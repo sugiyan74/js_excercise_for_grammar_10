@@ -13,8 +13,18 @@
  *     - removeMaxNumberFromArray関数の戻り値は[10, 500, 234, 221]である
  *     - removeMaxNumberFromArray関数を実行した後の配列numbersの内容は [10, 500, 234, 965, 221] のままである
  */
+const numbers = [10, 500, 234, 965, 221];
+const max = Math.max(...numbers);
+const returnedNumbers = removeMaxNumberFromArray(numbers);
+function isBigEnough(value) {
+    return value < max;
+};
+function removeMaxNumberFromArray(_numbers) {
+    return _numbers.filter(isBigEnough);
+};
 
-
+console.log('removeMaxNumberFromArray戻り値:', returnedNumbers);
+console.log('関数実行した後の配列numbers:', numbers);
 
 /**
  * 課題2: 数値が格納されている配列を引数で受け取り、小さい順に並べ替える
@@ -34,3 +44,22 @@
  *     - 「Array.prototype.sort()」を使う
  *       - https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
  */
+const beforeSortNumbers = [1000, 10, 500, 234, 965, 221, 102];
+const afterSortNumbers = sortNumbers(beforeSortNumbers);
+
+function sortNumbers(_numbers) {
+    const newArray = _numbers.slice();
+    newArray.sort((a, b) => {
+        if (a < b) {
+          return -1;
+        }
+        if (a > b) {
+          return 1;
+        }
+        return 0
+    });
+    return newArray;
+};
+
+console.log('beforeSortNumbersの内容は:', beforeSortNumbers);
+console.log('afterSortNumbersの内容は::', afterSortNumbers);
