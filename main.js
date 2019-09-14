@@ -14,15 +14,20 @@
  *     - removeMaxNumberFromArray関数を実行した後の配列numbersの内容は [10, 500, 234, 965, 221] のままである
  */
 const numbers = [10, 500, 234, 965, 221];
-const max = Math.max(...numbers);
+const removeMaxNumberFromArray = (_numbers) => {
+    const copiedNumbers = _numbers.slice();
+    let indexMaxNumber = 0;
+    let currentMaxNumber;
+    copiedNumbers.forEach((number, index) => {
+        if(currentMaxNumber === undefined || currentMaxNumber < number) {
+            currentMaxNumber = number;
+            indexMaxNumber = index;
+        }
+    });
+    copiedNumbers.splice(indexMaxNumber, 1);
+    return copiedNumbers;
+};
 const returnedNumbers = removeMaxNumberFromArray(numbers);
-function isBigEnough(value) {
-    return value < max;
-};
-function removeMaxNumberFromArray(_numbers) {
-    return _numbers.filter(isBigEnough);
-};
-
 console.log('removeMaxNumberFromArray戻り値:', returnedNumbers);
 console.log('関数実行した後の配列numbers:', numbers);
 
@@ -59,7 +64,7 @@ function sortNumbers(_numbers) {
         return 0
     });
     return newArray;
-};
+}
 
 console.log('beforeSortNumbersの内容は:', beforeSortNumbers);
 console.log('afterSortNumbersの内容は::', afterSortNumbers);
